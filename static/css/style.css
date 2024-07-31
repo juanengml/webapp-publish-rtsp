@@ -1,0 +1,103 @@
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #222;
+    color: #f0f0f0;
+}
+
+.jumbotron {
+    background-color: #444;
+    color: #f0f0f0;
+    padding: 2rem 1rem;
+    border: 4px solid #f0f0f0;
+    box-shadow: 0 0 10px rgba(240, 240, 240, 0.5);
+}
+
+.form-group label {
+    color: #f0f0f0;
+}
+
+.btn-primary {
+    background-color: #ff5722;
+    border-color: #ff5722;
+    box-shadow: 0 0 10px #ff5722;
+}
+
+.btn-primary:hover {
+    background-color: #ff784e;
+    border-color: #ff784e;
+}
+
+.btn-danger {
+    background-color: #ff1744;
+    border-color: #ff1744;
+    box-shadow: 0 0 10px #ff1744;
+}
+
+.btn-danger:hover {
+    background-color: #ff4569;
+    border-color: #ff4569;
+}
+
+.table-container {
+    background: #333;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #f0f0f0;
+}
+
+.table thead th {
+    color: #ff5722;
+}
+
+.table tbody td {
+    color: #f0f0f0;
+    word-break: break-all;
+}
+
+.alert {
+    word-break: break-all;
+}
+
+/* Estilos responsivos */
+@media (max-width: 576px) {
+    .jumbotron {
+        padding: 1rem 0.5rem;
+    }
+
+    .container {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+    }
+
+    .table-container {
+        padding: 15px;
+    }
+
+    .table th, .table td {
+        font-size: 0.8rem;
+    }
+
+    .display-4 {
+        font-size: 1.5rem;
+    }
+
+    .lead {
+        font-size: 0.8rem;
+    }
+
+    .table thead th, .table tbody td {
+        white-space: normal;
+    }
+
+    .table thead th {
+        font-size: 0.8rem;
+    }
+}

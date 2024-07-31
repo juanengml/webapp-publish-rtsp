@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RTSP Streamer</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="jumbotron text-center">
+        <div class="container">
+            <h1 class="display-4">RTSP Streamer</h1>
+            <p class="lead">Monitor and control your RTSP streams with a retro twist.</p>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <form method="POST" action="/">
+            <div class="form-group">
+                <label for="input_url">RTSP Input URL</label>
+                <input type="text" class="form-control" id="input_url" name="input_url" placeholder="rtsp://admin:verde123camera@192.168.0.50:554/user=admin_password=verde123camera_channel=1_stream=0.sdp" required>
+            </div>
+            <div class="form-group">
+                <label for="output_url">RTSP Output URL</label>
+                <input type="text" class="form-control" id="output_url" name="output_url" placeholder="rtsp://15.228.239.62:8554/live" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Start Stream</button>
+        </form>
+        <br>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="table-container mt-5">
+            <h2>Active Streams</h2>
+            <table class="table table-bordered table-dark mt-3">
+                <thead>
+                    <tr>
+                        <th>Process ID</th>
+                        <th>Input URL</th>
+                        <th>Output URL</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for process_id, stream in active_streams.items() %}
+                    <tr>
+                        <td>{{ process_id }}</td>
+                        <td>{{ stream['input_url'] }}</td>
+                        <td>{{ stream['output_url'] }}</td>
+                        <td>
+                            <form method="POST" action="{{ url_for('stop', process_id=process_id) }}">
+                                <button type="submit" class="btn btn-danger btn-sm">Stop</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
