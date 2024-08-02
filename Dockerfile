@@ -1,6 +1,9 @@
 # Use the official Python image from the Docker Hub
 FROM python:3.9-slim
 
+RUN apt update 
+RUN apt install ffmpeg --yes
+
 # Set the working directory
 WORKDIR /app
 
